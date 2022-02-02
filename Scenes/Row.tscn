@@ -1,0 +1,69 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Scenes/Square.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Scenes/Scripts/Row.gd" type="Script" id=2]
+
+[node name="Row" type="HBoxContainer"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -170.0
+margin_top = -30.0
+margin_right = 170.0
+margin_bottom = 30.0
+custom_constants/separation = 10
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Square0" parent="." instance=ExtResource( 1 )]
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 0.0
+margin_top = 0.0
+margin_right = 60.0
+margin_bottom = 60.0
+
+[node name="Square1" parent="." instance=ExtResource( 1 )]
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 70.0
+margin_top = 0.0
+margin_right = 130.0
+margin_bottom = 60.0
+
+[node name="Square2" parent="." instance=ExtResource( 1 )]
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 140.0
+margin_top = 0.0
+margin_right = 200.0
+margin_bottom = 60.0
+
+[node name="Square3" parent="." instance=ExtResource( 1 )]
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 210.0
+margin_top = 0.0
+margin_right = 270.0
+margin_bottom = 60.0
+
+[node name="Square4" parent="." instance=ExtResource( 1 )]
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 280.0
+margin_top = 0.0
+margin_right = 340.0
+margin_bottom = 60.0
