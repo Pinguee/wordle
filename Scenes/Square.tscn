@@ -1,8 +1,11 @@
 [gd_scene load_steps=5 format=2]
 
-[ext_resource path="res://UI/roundedsquare_white.tres" type="StyleBox" id=1]
-[ext_resource path="res://UI/font_set_up.tres" type="DynamicFont" id=2]
+[ext_resource path="res://Resources/ui_square.tres" type="StyleBox" id=1]
+[ext_resource path="res://Resources/font_square.tres" type="DynamicFont" id=2]
 [ext_resource path="res://Scenes/Scripts/Square.gd" type="Script" id=3]
+
+
+
 
 [sub_resource type="Animation" id=1]
 resource_name = "Shake"

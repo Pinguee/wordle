@@ -1,30 +1,61 @@
 extends Control
 
 var word : String
+var wordlist : PoolStringArray
 var dictionary : PoolStringArray
-var dictionary_full : PoolStringArray
 var buffer : String
+
 onready var rows := $Rows.get_children()
 onready var win_scene := preload("res://Scenes/End.tscn")
 
-func enter_word():
-	if not buffer.to_upper() in dictionary_full:
+
+func _ready():
+	wordlist = load_file_lines("res://Resources/wordlist.txt")
+	dictionary = load_file_lines("res://Resources/dictionary.txt")
+	
+	randomize()
+	word = (wordlist[randi() % wordlist.size()] as String).to_upper()
+	print_debug(word)
+
+
+func _input(event : InputEvent):
+	if event is InputEventKey and event.is_pressed():
+		match event.scancode:
+			KEY_BACKSPACE:
+				buffer.erase(buffer.length()-1, 1)
+				rows[0].update_row(buffer)
+			KEY_ENTER:
+				if buffer.length() == 5:
+					enter_word()
+			_:
+				var c : int = ord(char(event.scancode).to_upper())
+				if c in range(ord('A'), ord('Z') + 1) and buffer.length() < 5:
+					buffer = buffer + char(c)
+				rows[0].update_row(buffer)
+
+
+func enter_word() -> void:
+	if not buffer.to_upper() in dictionary:
 		for square in rows[0].get_children():
 			square.shake()
 		return
-	var a := []
-	var b := [0,0,0,0,0]
+	
+	buffer = buffer.to_upper()
+	word = word.to_upper()
+	
+	var chars := []
+	var matches := [0,0,0,0,0]
 	for c in word:
-		a.append(c)
+		chars.append(c)
 	for i in range(5):
 		if word[i].to_lower() == buffer[i].to_lower():
-			b[i] = 2
-			a.erase(buffer[i].to_lower())
+			matches[i] = 2
+			chars.erase(buffer[i].to_lower())
 	for i in range(5):
 		if buffer[i].to_lower() in a and b[i] == 0:
 			b[i] = 1
 			a.erase(buffer[i].to_lower())
-	rows[0].test_row(b, buffer)
+	(rows[0] as Row).validate_row(matches, buffer)
 	rows.pop_front()
 	if buffer.to_lower() == word.to_lower():
 		var root = get_tree().root
@@ -44,27 +75,13 @@ func enter_word():
 		root.add_child(win_instance)
 	buffer = ""
 
-func load_dic(path : String) -> PoolStringArray:
+func load_file_lines(path : String) -> PoolStringArray:
 	var f : File = File.new()
-	f.open(path, File.READ)
-	return f.get_as_text().split('\n', false)
+	assert(f.open(path, File.READ) == OK, "Error opening %s" % path )
+	var lines_array := f.get_as_text().split('\n', false)
+	f.close()
+	return lines_array
 
-func _input(event : InputEvent):
-	if event is InputEventKey and event.is_pressed():
-		if event.scancode == KEY_BACKSPACE:
-			buffer.erase(buffer.length()-1, 1)
-			rows[0].update_row(buffer)
-		elif event.scancode == KEY_ENTER and buffer.length() == 5:
-			enter_word()
-		else:
-			var c = ord(char(event.scancode).to_upper())
-			if c in range(ord('A'), ord('Z') + 1) and buffer.length() < 5:
-				buffer = buffer + char(c)
-			rows[0].update_row(buffer)
 
-func _ready():
-	randomize()
-	dictionary = load_dic("res://dico_trie.txt")
-	dictionary_full = load_dic("res://dico5.txt")
-	word = dictionary[randi() % dictionary.size()]
-	print(word)
+
+
