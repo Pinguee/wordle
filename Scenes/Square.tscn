@@ -1,12 +1,26 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
-[ext_resource path="res://UI/roundedsquare_white.tres" type="StyleBox" id=1]
-[ext_resource path="res://UI/font_set_up.tres" type="DynamicFont" id=2]
+[ext_resource path="res://Resources/ui_square.tres" type="StyleBox" id=1]
+[ext_resource path="res://Resources/font_square.tres" type="DynamicFont" id=2]
 [ext_resource path="res://Scenes/Scripts/Square.gd" type="Script" id=3]
+
+[sub_resource type="Animation" id=2]
+length = 0.001
+tracks/0/type = "bezier"
+tracks/0/path = NodePath(".:rect_rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"points": PoolRealArray( 0, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0 )
+}
 
 [sub_resource type="Animation" id=1]
 resource_name = "Shake"
-length = 0.5
+length = 0.2
+step = 0.05
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:rect_rotation")
 tracks/0/interp = 1
@@ -14,10 +28,10 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.07, 0.37, 0.5 ),
-"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"times": PoolRealArray( 0, 0.05, 0.15, 0.2 ),
+"transitions": PoolRealArray( -2, -2, -2, -2 ),
 "update": 0,
-"values": [ 0.0, -15.0, 15.0, 0.0 ]
+"values": [ 0.0, -10.0, 12.0, 0.0 ]
 }
 
 [node name="Square" type="Panel"]
@@ -39,6 +53,7 @@ __meta__ = {
 }
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/RESET = SubResource( 2 )
 anims/Shake = SubResource( 1 )
 
 [node name="Label" type="Label" parent="."]

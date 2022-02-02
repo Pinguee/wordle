@@ -1,22 +1,19 @@
 extends HBoxContainer
+class_name Row
 
 onready var columns := get_children()
 
 func update_row(buffer : String):
-	for e in columns:
-		e.set_state(Square.State.UNDEFINED)
+	reset_row()
 	for i in range(buffer.length()):
-		columns[i].set_state(Square.State.NOT_TESTED, buffer[i])
+		columns[i].set_state(Square.NOT_TESTED, buffer[i])
 
-func test_row(test_array : Array, buffer : String):
+
+func reset_row():
+	for e in columns:
+		e.set_state(Square.UNDEFINED)
+
+
+func validate_row(matches : Array, buffer : String):
 	for i in range(columns.size()):
-		match test_array[i] :
-			0 :
-				columns[i].set_state(Square.State.NOT_IN_WORD, buffer[i])
-			1 :
-				columns[i].set_state(Square.State.IN_WORD, buffer[i])
-			2 :
-				columns[i].set_state(Square.State.FOUND, buffer[i])
-
-func _ready():
-	pass
+		columns[i].set_state(matches[i], buffer[i])

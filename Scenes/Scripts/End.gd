@@ -1,21 +1,15 @@
 extends Control
 class_name End
 
-var winLose = {
-	"win" : "T'as gagné sale BG", 
-	"lose" : "T'as perdu sale nul"
-}
-
-onready var button = get_node("Button")
-
-func win(win : bool):
-	if win:
-		$Panel/Label.text = "T'as gagné sale BG"
-	else:
-		$Panel/Label.text = "T'as perdu sale nul"
+onready var button = $Background/VBoxContainer/Button
+onready var label = $Background/VBoxContainer/Label
 
 func _ready():
-	button.connect("pressed", self, "_button_pressed")
+	hide()
 
-func _button_pressed():
-	get_tree().change_scene("res://Scenes/Main.tscn")
+func win(win : bool):
+	show()
+	if win:
+		label.text = "T'as gagné sale BG"
+	else:
+		label.text = "T'as perdu sale nul"
