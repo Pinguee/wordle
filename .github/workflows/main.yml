@@ -10,12 +10,11 @@ jobs:
       - name: Export
         uses: josephbmanley/build-godot-action@v1.4.1
         with:
-          name: godot-project
+          projectDir: ./
+          name: wordle
           preset: HTML5
         
       - name: Deploy Page
         uses: JamesIves/github-pages-deploy-action@v4.2.3
         with:
           folder: build
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
