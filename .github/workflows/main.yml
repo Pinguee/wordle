@@ -8,7 +8,7 @@ jobs:
     name: Export Game
     steps:
       - name: Export
-        uses: josephbmanley/build-godot-action@[VERSION]
+        uses: josephbmanley/build-godot-action@v1.4.1
         with:
           name: godot-project
           preset: HTML5
