@@ -7,6 +7,9 @@ jobs:
     runs-on: ubuntu-latest
     name: Export Game
     steps:
+      - name: Check out repository code
+        uses: actions/checkout@v2
+        
       - name: Export
         uses: josephbmanley/build-godot-action@v1.4.1
         with:
