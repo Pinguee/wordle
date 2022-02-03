@@ -56,13 +56,20 @@ func enter_word() -> void:
 			matches[i] = Square.FOUND
 			chars.erase(buffer[i])
 	
-	# Parial matches
-	for i in range(len(word)):
-		if buffer[i] in chars and matches[i] == Square.NOT_IN_WORD:
-			matches[i] = Square.IN_WORD
-			chars.erase(buffer[i].to_lower())
+	if len(rows) > 1:
+		# Partial matches
+		for i in range(len(word)):
+			if buffer[i] in chars and matches[i] == Square.NOT_IN_WORD:
+				matches[i] = Square.IN_WORD
+				chars.erase(buffer[i].to_lower())
+		rows.pop_front().validate_row(matches, buffer)
+	else:
+		# Last word, wrong letters
+		for i in range(len(word)):
+			if buffer[i] != word[i]:
+				matches[i] = Square.WRONG_LETTER
+		rows.pop_front().validate_row(matches, word)
 	
-	rows.pop_front().validate_row(matches, buffer)
 	
 	# Win / Lose conditions
 	if buffer == word or rows.size() == 0:

@@ -1,7 +1,7 @@
 extends Panel
 class_name Square
 
-enum {NOT_IN_WORD, FOUND, IN_WORD, NOT_TESTED, UNDEFINED}
+enum {NOT_IN_WORD, FOUND, IN_WORD, NOT_TESTED, WRONG_LETTER, UNDEFINED}
 
 var state : int = UNDEFINED
 onready var anim_player = get_node("AnimationPlayer")
@@ -29,6 +29,9 @@ func set_state(state : int, letter : String = ''):
 		NOT_TESTED : 
 			$Label.show()
 			self_modulate = Color("#1f1f1f")
+		WRONG_LETTER :
+			$Label.show()
+			self_modulate = Color("#fd5453")
 
 func shake():
 	anim_player.play("Shake")
