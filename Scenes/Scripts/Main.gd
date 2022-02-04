@@ -47,7 +47,7 @@ func enter_word() -> void:
 		chars.append(c)
 	
 	var matches := []
-	for i in range(len(word)):
+	for _i in range(len(word)):
 		matches.append(Square.NOT_IN_WORD)
 	
 	# Perfect matches
@@ -79,7 +79,8 @@ func enter_word() -> void:
 
 func load_file_lines(path : String) -> PoolStringArray:
 	var f : File = File.new()
-	assert(f.open(path, File.READ) == OK, "Error opening %s" % path )
+	if f.open(path, File.READ != OK):
+		printerr("Could not open %s" % path)
 	var lines_array := f.get_as_text().split('\n', false)
 	f.close()
 	return lines_array
@@ -87,7 +88,8 @@ func load_file_lines(path : String) -> PoolStringArray:
 func new_game():
 	$End.hide()
 	randomize()
-	word = (wordlist[randi() % wordlist.size()] as String).to_upper()
+	if wordlist.size():
+		word = (wordlist[randi() % wordlist.size()] as String).to_upper()
 	buffer = ""
 	rows = $Rows.get_children()
 	

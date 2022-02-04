@@ -9,11 +9,11 @@ onready var anim_player = get_node("AnimationPlayer")
 func _ready():
 	set_state(UNDEFINED)
 
-func set_state(state : int, letter : String = ''):
-	self.state = state
+func set_state(new_state : int, letter : String = ''):
+	state = new_state
 	$Label.text = letter
 	
-	match state : 
+	match new_state : 
 		UNDEFINED :
 			$Label.hide()
 			self_modulate = Color("#1f1f1f")
