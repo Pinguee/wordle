@@ -1,9 +1,25 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://Resources/Comfortaa-Bold.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://Scenes/Scripts/End.gd" type="Script" id=2]
 [ext_resource path="res://Resources/ui_button.tres" type="StyleBox" id=3]
 [ext_resource path="res://Resources/ui_panel.tres" type="StyleBox" id=4]
+
+[sub_resource type="Shader" id=3]
+code = "// NOTE: Shader automatically converted from Godot Engine 3.4.2.stable's CanvasItemMaterial.
+
+shader_type canvas_item;
+render_mode blend_mix;
+
+void fragment()
+{
+	COLOR.rgb = textureLod(SCREEN_TEXTURE, SCREEN_UV, 3.0).rgb;
+	COLOR.rgb *= 0.5;
+	
+}"
+
+[sub_resource type="ShaderMaterial" id=4]
+shader = SubResource( 3 )
 
 [sub_resource type="DynamicFont" id=1]
 size = 32
@@ -11,6 +27,13 @@ font_data = ExtResource( 1 )
 
 [sub_resource type="DynamicFont" id=2]
 font_data = ExtResource( 1 )
+
+[sub_resource type="StyleBoxFlat" id=5]
+bg_color = Color( 0.589844, 0.589844, 0.589844, 0.5 )
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
 
 [node name="EndScreen" type="Control"]
 anchor_right = 1.0
@@ -21,10 +44,12 @@ margin_right = -0.639893
 margin_bottom = -0.639893
 script = ExtResource( 2 )
 __meta__ = {
+"_edit_horizontal_guides_": [  ],
 "_edit_use_anchors_": false
 }
 
 [node name="Background" type="Panel" parent="."]
+material = SubResource( 4 )
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -39,14 +64,10 @@ __meta__ = {
 }
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Background"]
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-margin_left = -229.0
-margin_top = -156.5
-margin_right = 229.0
-margin_bottom = 156.5
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = 50.0
+margin_bottom = -50.0
 grow_horizontal = 2
 grow_vertical = 2
 custom_constants/separation = 31
@@ -56,9 +77,8 @@ __meta__ = {
 }
 
 [node name="Label" type="Label" parent="Background/VBoxContainer"]
-margin_top = 97.0
-margin_right = 458.0
-margin_bottom = 134.0
+margin_right = 540.0
+margin_bottom = 37.0
 custom_fonts/font = SubResource( 1 )
 text = "coucou"
 align = 1
@@ -66,16 +86,16 @@ valign = 1
 autowrap = true
 
 [node name="Button" type="Button" parent="Background/VBoxContainer"]
-margin_left = 129.0
-margin_top = 165.0
-margin_right = 329.0
-margin_bottom = 215.0
+margin_left = 170.0
+margin_top = 68.0
+margin_right = 370.0
+margin_bottom = 118.0
 rect_min_size = Vector2( 200, 50 )
 mouse_default_cursor_shape = 2
 size_flags_horizontal = 4
-custom_styles/hover = ExtResource( 3 )
-custom_styles/normal = ExtResource( 3 )
 custom_fonts/font = SubResource( 2 )
+custom_styles/hover = SubResource( 5 )
+custom_styles/normal = ExtResource( 3 )
 action_mode = 0
 text = "Nouvelle Partie"
 __meta__ = {
