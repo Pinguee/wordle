@@ -1,23 +1,33 @@
 name: Build and Publish
 on: [push]
 
+env:
+  GODOT_VERSION: 3.3.4
+  EXPORT_NAME: wordle
+
 jobs:
   # This workflow contains a single job called "build"
   build:
     runs-on: ubuntu-latest
+    container:
+      image: barichello/godot-ci:3.3.4
+    
     name: Export Game
     steps:
       - name: Check out repository code
         uses: actions/checkout@v2
         
-      - name: Export
-        uses: josephbmanley/build-godot-action@v1.4.1
-        with:
-          projectDir: ./
-          preset: HTML5
+      - name: Setup
+        run: |
+          mkdir -v -p ~/.local/share/godot/templates
+          mv /root/.local/share/godot/templates/${GODOT_VERSION}.stable ~/.local/share/godot/templates/${GODOT_VERSION}.stable
+      - name: Web Build
+        run: |
+          mkdir -v -p build/web
+          godot -v --export "HTML5" ../build/web/index.html
         
       - name: Deploy Page
         uses: JamesIves/github-pages-deploy-action@v4.2.3
         with:
           branch: gh-pages
-          folder: build
+          folder: build/web
