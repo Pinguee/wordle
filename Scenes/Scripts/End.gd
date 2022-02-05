@@ -10,6 +10,6 @@ func _ready():
 func win(win : bool):
 	show()
 	if win:
-		label.text = "T'as gagné sale BG"
+		label.text = "Bien ouej! :D"
 	else:
-		label.text = "T'as perdu sale nul"
+		label.text = "Nooooooo! :("

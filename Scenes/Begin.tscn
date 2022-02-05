@@ -8,7 +8,6 @@
 [node name="Begin" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-input_pass_on_modal_close_click = false
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -16,9 +15,9 @@ __meta__ = {
 [node name="Background" type="ColorRect" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = -1.14539
+margin_left = -1.86106
 margin_top = 0.637451
-margin_right = -1.14539
+margin_right = -1.86108
 margin_bottom = 0.637451
 color = Color( 0.0666667, 0.0666667, 0.0666667, 1 )
 __meta__ = {
@@ -41,21 +40,21 @@ __meta__ = {
 }
 
 [node name="Title" type="Label" parent="All"]
+margin_top = 11.0
 margin_right = 671.0
-margin_bottom = 37.0
+margin_bottom = 48.0
 custom_fonts/font = ExtResource( 2 )
 text = "Comment jouer ?"
 align = 1
 valign = 1
 
 [node name="Text" type="Label" parent="All"]
-margin_top = 67.0
+margin_top = 78.0
 margin_right = 671.0
-margin_bottom = 174.0
+margin_bottom = 163.0
 custom_fonts/font = ExtResource( 4 )
-text = "À chaque partie un mot est choisi de manière aléatoire, le but est alors de trouver le mot.
-Pour jouer il faut écrire un mot et appuyer sur entrée pour le valider, le mot doit être trouvé en 6 essais maximum.
-Après avoir validé le mot, les pitits carrés changeront de couleurs :"
+text = "À chaque partie un mot est choisi de manière aléatoire, le but est de le trouver en 6 essais.
+Écrivez un mot et appuyer sur entrée pour le valider, les pitits carrés changeront alors de couleurs :"
 valign = 1
 autowrap = true
 __meta__ = {
@@ -64,9 +63,9 @@ __meta__ = {
 
 [node name="Rules" type="VBoxContainer" parent="All"]
 margin_left = 83.0
-margin_top = 204.0
+margin_top = 193.0
 margin_right = 587.0
-margin_bottom = 380.0
+margin_bottom = 369.0
 size_flags_horizontal = 4
 custom_constants/separation = 13
 alignment = 1
@@ -153,8 +152,8 @@ __meta__ = {
 
 [node name="Button" parent="All" instance=ExtResource( 1 )]
 margin_left = 135.0
-margin_top = 410.0
+margin_top = 399.0
 margin_right = 535.0
-margin_bottom = 460.0
+margin_bottom = 449.0
 rect_min_size = Vector2( 400, 50 )
 text = "Jouer!"
