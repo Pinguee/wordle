@@ -91,4 +91,3 @@ margin_right = 340.0
 margin_bottom = 460.0
 
 [node name="End" parent="." instance=ExtResource( 3 )]
-visible = false
