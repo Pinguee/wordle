@@ -1,25 +1,14 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://Resources/Comfortaa-Bold.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://Scenes/Scripts/End.gd" type="Script" id=2]
 [ext_resource path="res://Resources/ui_button.tres" type="StyleBox" id=3]
-[ext_resource path="res://Resources/ui_panel.tres" type="StyleBox" id=4]
+[ext_resource path="res://Scenes/Interface/BlurPanel.tscn" type="PackedScene" id=4]
+[ext_resource path="res://icon.png" type="Texture" id=5]
 
-[sub_resource type="Shader" id=5]
-code = "// NOTE: Shader automatically converted from Godot Engine 3.4.2.stable's CanvasItemMaterial.
-
-shader_type canvas_item;
-render_mode blend_mix;
-
-void fragment()
-{
-	COLOR.rgb = textureLod(SCREEN_TEXTURE, SCREEN_UV, 3.0).rgb;
-	COLOR.rgb *= 0.5;
-	
-}"
-
-[sub_resource type="ShaderMaterial" id=1]
-shader = SubResource( 5 )
+[sub_resource type="DynamicFont" id=1]
+size = 32
+font_data = ExtResource( 1 )
 
 [sub_resource type="DynamicFont" id=2]
 size = 32
@@ -48,25 +37,18 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Background" type="Panel" parent="."]
-material = SubResource( 1 )
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-margin_left = -270.0
-margin_top = -87.5
-margin_right = 270.0
-margin_bottom = 87.5
-custom_styles/panel = ExtResource( 4 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
+[node name="Icon" type="Sprite" parent="."]
+position = Vector2( 334.64, 271.64 )
+texture = ExtResource( 5 )
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Background"]
+[node name="Background" parent="." instance=ExtResource( 4 )]
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="Background"]
 anchor_right = 1.0
 anchor_bottom = 1.0
+margin_left = 50.0
 margin_top = 28.5
+margin_right = -50.0
 margin_bottom = -28.5
 grow_horizontal = 2
 grow_vertical = 2
@@ -76,8 +58,8 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Label" type="Label" parent="Background/VBoxContainer"]
-margin_right = 540.0
+[node name="Label" type="Label" parent="Background/VBoxContainer2"]
+margin_right = 440.0
 margin_bottom = 37.0
 custom_fonts/font = SubResource( 2 )
 text = "coucou"
@@ -85,10 +67,10 @@ align = 1
 valign = 1
 autowrap = true
 
-[node name="Button" type="Button" parent="Background/VBoxContainer"]
-margin_left = 170.0
+[node name="Button" type="Button" parent="Background/VBoxContainer2"]
+margin_left = 120.0
 margin_top = 68.0
-margin_right = 370.0
+margin_right = 320.0
 margin_bottom = 118.0
 rect_min_size = Vector2( 200, 50 )
 mouse_default_cursor_shape = 2
