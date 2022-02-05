@@ -12,9 +12,10 @@ onready var win_scene := preload("res://Scenes/End.tscn")
 
 func _ready():
 	$End/Background/VBoxContainer/Button.connect("pressed", self, "new_game")
+	$Begin/Background/Button.connect("pressed", self, "new_game")
 	wordlist = load_file_lines("res://Resources/wordlist.txt")
 	dictionary = load_file_lines("res://Resources/dictionary.txt")
-	new_game()
+	$Begin.show()
 
 func _input(event : InputEvent):
 	if event is InputEventKey and event.is_pressed():
@@ -61,7 +62,7 @@ func enter_word() -> void:
 		for i in range(len(word)):
 			if buffer[i] in chars and matches[i] == Square.NOT_IN_WORD:
 				matches[i] = Square.IN_WORD
-				chars.erase(buffer[i].to_lower())
+				chars.erase(buffer[i])
 		rows.pop_front().validate_row(matches, buffer)
 	else:
 		# Last word, wrong letters
@@ -86,6 +87,7 @@ func load_file_lines(path : String) -> PoolStringArray:
 	return lines_array
 
 func new_game():
+	$Begin.hide()
 	$End.hide()
 	randomize()
 	if wordlist.size():

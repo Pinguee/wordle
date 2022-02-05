@@ -1,0 +1,158 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://Resources/ui_panel.tres" type="StyleBox" id=1]
+[ext_resource path="res://Resources/Comfortaa-Bold.ttf" type="DynamicFontData" id=2]
+[ext_resource path="res://Resources/ui_square.tres" type="StyleBox" id=3]
+[ext_resource path="res://Resources/text_font.tres" type="DynamicFont" id=4]
+
+[sub_resource type="DynamicFont" id=1]
+size = 32
+font_data = ExtResource( 2 )
+
+[node name="Control" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Background" type="Panel" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -0.637451
+margin_top = 0.637451
+margin_right = -0.637451
+margin_bottom = 0.637451
+custom_styles/panel = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="All" type="VBoxContainer" parent="Background"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -372.5
+margin_top = -219.5
+margin_right = 372.5
+margin_bottom = 219.5
+alignment = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Rules" type="VBoxContainer" parent="Background/All"]
+margin_top = 52.0
+margin_right = 745.0
+margin_bottom = 362.0
+
+[node name="Titre" type="Label" parent="Background/All/Rules"]
+margin_right = 745.0
+margin_bottom = 40.0
+custom_fonts/font = SubResource( 1 )
+text = "Comment jouer ?"
+align = 1
+valign = 1
+
+[node name="Text" type="Label" parent="Background/All/Rules"]
+margin_top = 41.0
+margin_right = 745.0
+margin_bottom = 148.0
+custom_fonts/font = ExtResource( 4 )
+text = "À chaque partie un mot est choisi de manière aléatoire, le but est de trouver quel mot a été choisis.
+Pour jouer il faut écrire un mot et appuyer sur entrée pour le valider, le mot doit être trouver un 6 essais maximum.
+Après avoir valider le mot, les pitits carrés changeront de couleurs :"
+align = 1
+valign = 1
+autowrap = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Found" type="HBoxContainer" parent="Background/All/Rules"]
+margin_top = 152.0
+margin_right = 745.0
+margin_bottom = 202.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Panel" type="Panel" parent="Background/All/Rules/Found"]
+self_modulate = Color( 0.501961, 0.803922, 0.380392, 1 )
+margin_right = 50.0
+margin_bottom = 50.0
+rect_min_size = Vector2( 50, 50 )
+custom_styles/panel = ExtResource( 3 )
+
+[node name="Label" type="Label" parent="Background/All/Rules/Found"]
+margin_left = 54.0
+margin_top = 15.0
+margin_right = 259.0
+margin_bottom = 34.0
+custom_fonts/font = ExtResource( 4 )
+text = "La lettre est bien placée"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="InWord" type="HBoxContainer" parent="Background/All/Rules"]
+margin_top = 206.0
+margin_right = 745.0
+margin_bottom = 256.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Panel" type="Panel" parent="Background/All/Rules/InWord"]
+self_modulate = Color( 1, 0.639216, 0, 1 )
+margin_right = 50.0
+margin_bottom = 50.0
+rect_min_size = Vector2( 50, 50 )
+custom_styles/panel = ExtResource( 3 )
+
+[node name="Label" type="Label" parent="Background/All/Rules/InWord"]
+margin_left = 54.0
+margin_top = 15.0
+margin_right = 493.0
+margin_bottom = 34.0
+custom_fonts/font = ExtResource( 4 )
+text = "La lettre est dans le mot mais pas au bonne endroit"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="NotInWord" type="HBoxContainer" parent="Background/All/Rules"]
+margin_top = 260.0
+margin_right = 745.0
+margin_bottom = 310.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Panel" type="Panel" parent="Background/All/Rules/NotInWord"]
+self_modulate = Color( 0.184314, 0.184314, 0.184314, 1 )
+margin_right = 50.0
+margin_bottom = 50.0
+rect_min_size = Vector2( 50, 50 )
+custom_styles/panel = ExtResource( 3 )
+
+[node name="Label" type="Label" parent="Background/All/Rules/NotInWord"]
+margin_left = 54.0
+margin_top = 15.0
+margin_right = 314.0
+margin_bottom = 34.0
+custom_fonts/font = ExtResource( 4 )
+text = "La lettre n'est pas dans le mot "
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Button" type="Button" parent="Background/All"]
+margin_top = 400.0
+margin_right = 500.0
+margin_bottom = 420.0
+text = "Commencer"
+__meta__ = {
+"_edit_use_anchors_": false
+}
