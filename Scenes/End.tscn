@@ -11,15 +11,30 @@ code = "// NOTE: Shader automatically converted from Godot Engine 3.4.2.stable's
 shader_type canvas_item;
 render_mode blend_mix;
 
+uniform float border_offset : hint_range(0.0, 1.0);
+uniform vec4 color : hint_color;
+
+
 void fragment()
 {
-	COLOR.rgb = textureLod(SCREEN_TEXTURE, SCREEN_UV, 3.0).rgb;
-	COLOR.rgb *= 0.5;
+	
+	float alpha = smoothstep(COLOR.a,COLOR.a-fwidth(COLOR.a), 0.0);
+	float border = step(COLOR.a, 1);
+	
+	COLOR.rgb = color.rgb;
+	COLOR.a = alpha;
+//	vec3 scr = textureLod(SCREEN_TEXTURE, SCREEN_UV, 3.0).rgb;
+////	COLOR.rgb *= 0.5;
+//	float s = step(COLOR.a, border_offset);
+//	COLOR.rgb = mix(color.rgb, vec3(1.0), s);
+//	COLOR.rgb = vec3(s);
 	
 }"
 
 [sub_resource type="ShaderMaterial" id=4]
 shader = SubResource( 3 )
+shader_param/border_offset = 0.0
+shader_param/color = Color( 0.0705882, 0.0705882, 0.0705882, 1 )
 
 [sub_resource type="DynamicFont" id=1]
 size = 32
@@ -66,7 +81,9 @@ __meta__ = {
 [node name="VBoxContainer" type="VBoxContainer" parent="Background"]
 anchor_right = 1.0
 anchor_bottom = 1.0
+margin_left = 50.0
 margin_top = 50.0
+margin_right = -50.0
 margin_bottom = -50.0
 grow_horizontal = 2
 grow_vertical = 2
@@ -77,7 +94,7 @@ __meta__ = {
 }
 
 [node name="Label" type="Label" parent="Background/VBoxContainer"]
-margin_right = 540.0
+margin_right = 440.0
 margin_bottom = 37.0
 custom_fonts/font = SubResource( 1 )
 text = "coucou"
@@ -86,9 +103,9 @@ valign = 1
 autowrap = true
 
 [node name="Button" type="Button" parent="Background/VBoxContainer"]
-margin_left = 170.0
+margin_left = 120.0
 margin_top = 68.0
-margin_right = 370.0
+margin_right = 320.0
 margin_bottom = 118.0
 rect_min_size = Vector2( 200, 50 )
 mouse_default_cursor_shape = 2
