@@ -11,8 +11,9 @@ onready var rows : Array
 onready var win_scene := preload("res://Scenes/End.tscn")
 
 func _ready():
+	set_process_input(false)
 	$End/Background/VBoxContainer/Button.connect("pressed", self, "new_game")
-	$Begin/Background/Button.connect("pressed", self, "new_game")
+	$Begin/All/Button.connect("pressed", self, "new_game")
 	wordlist = load_file_lines("res://Resources/wordlist.txt")
 	dictionary = load_file_lines("res://Resources/dictionary.txt")
 	$Begin.show()
@@ -86,9 +87,11 @@ func load_file_lines(path : String) -> PoolStringArray:
 	f.close()
 	return lines_array
 
-func new_game():
+func new_game() -> void:
 	$Begin.hide()
 	$End.hide()
+
+	set_process_input(true)
 	randomize()
 	if wordlist.size():
 		word = (wordlist[randi() % wordlist.size()] as String).to_upper()

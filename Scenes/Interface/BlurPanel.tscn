@@ -20,7 +20,7 @@ void fragment()
 	vec3 scr = textureLod(SCREEN_TEXTURE, SCREEN_UV, 3.0).rgb;
 
 	COLOR.a = alpha;
-	COLOR.rgb = mix(scr * color.rgb, vec3(1.0), border);
+	COLOR.rgb = mix(scr * color.rgb, vec3(0.5), border);
 //	float s = step(COLOR.a, border_offset);
 //	COLOR.rgb = mix(color.rgb, vec3(1.0), s);
 //	COLOR.rgb = vec3(s);

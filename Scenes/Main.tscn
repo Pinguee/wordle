@@ -95,3 +95,4 @@ margin_bottom = 460.0
 visible = false
 
 [node name="Begin" parent="." instance=ExtResource( 4 )]
+visible = false
